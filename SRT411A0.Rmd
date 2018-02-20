@@ -1,0 +1,176 @@
+---
+title: "Assignment 0"
+author: "Sepehr Farahmand and Rahil Chadha"
+date: '2018-02-16'
+output:
+  pdf_document: default
+Github Username: SepherRahil
+---
+
+This document is designed to provide a solid introduction to the R language. We will be exploring vectors, matrices, lists and other common data types.We will also be assigning values to variables and creating graphs. Lastly, We will also be exploring ways to script using R such as for loops and if statements. 
+
+####ToDo 1 - Percentage of life spent at Seneca
+```{r}
+(2016-2014)/(2014-1991)*100
+```
+####ToDo 2 - Percentage of life spent at Seneca with variables
+```{r}
+a=2014
+b=2016
+c=1991
+(b-a)/(a-c)*100
+```
+####ToDo 3 - Sum of vector 
+```{r}
+b=c(4, 5, 8, 11)
+sum(b)
+```
+####ToDo 4 - Plotting random numbers
+```{r}
+x = rnorm(100)
+plot(x)
+```
+
+####ToDo 5 - Find the help of sqrt
+```{r}
+help(sqrt)
+```
+
+####ToDo 6 - Running an external script
+```{r}
+source("firstscript.r")
+
+
+
+```
+
+####ToDo 7 - Data Structures
+```{r}
+P = seq(from=31, to=60, by=1)
+Q= matrix(P,ncol = 5, nrow = 6)
+P
+Q
+```
+
+####ToDo 8 - Data Frames
+```{r}
+
+x1 = rnorm(100)
+x2 = rnorm(100)
+x3 = rnorm(100)
+t = data.frame(a = c(x1), b = c(x1+x2), c = c(x1+x2+x3))
+plot(t)
+sapply(t, sd)
+```
+
+####ToDo 9 - Rgb Graphs
+```{r}
+
+x1 = rnorm(100)
+x2 = rnorm(100)
+x3 = rnorm(100)
+t = data.frame(a = c(x1), b = c(x1+x2), c = c(x1+x2+x3))
+plot(t)
+sapply(t, sd)
+plot(t$a, type="l", ylim=range(t),lwd=3, col=rgb(1,0,0,0.3))
+lines(t$b, type="s", lwd=2,col=rgb(0.3,0.4,0.3,0.9))
+points(t$c, pch=20, cex=4,col=rgb(0,0,1,0.3))
+
+
+
+```
+rgb means red blue green. The rgb value determines the color of the graph.
+The final value for rgb is the alpha which is the opaqueness of the colors. 
+Lwd is the line width. Cex is a numerical value giving the amount by which
+the plotted text should be magnified.Pch specifies a symbol or character
+to be used as the default plotting point.
+
+####ToDo 10 - Writing to text file
+```{r}
+d2 = read.table(file="tst1.txt", header=TRUE)
+d2$g * 5 -> d2$g
+write.table(d2, file="tst2.txt", row.names=FALSE)
+d2
+```
+####ToDo 11 - Using sqrt and mean
+```{r}
+x = runif(100, min=1, max=100)
+sqrt(x) -> y
+mean(y)
+```
+It is not possible to use rnorm to generate your list because you will end
+up with invalid numbers when you try and square root a negative number.
+Interestingly enough, the mean is always between 6.3 and 7.2.
+
+####ToDo 12 - Time/date vectors and graphs
+```{r}
+x=strptime( c("20180219180000", "20141225000000", "20181217000000"), format="%Y%m%d%H%M%S")
+y=c(1,2,3)
+plot(x,y)
+```
+
+
+####ToDo 13 - Using if statements and for loops
+```{r}
+h=seq(from=1, to=100, by=1)
+s=c()
+for(i in 1:100)
+{
+  if(h[i]<5)
+  {
+    s[i]=h[i]*5;
+  }
+  else if(h[i]>90)
+  {
+    s[i]=h[i]*10;
+  }
+  else
+  {
+    s[i]=h[i]*0.1;
+  }
+}
+
+s
+```
+
+####ToDo 14 - Using functions and arguments
+```{r}
+k=1:100
+fun = function(arg)
+{
+  l = length(arg)
+  for(i in 1:l)
+  {
+    if (arg[i] < 5 | arg[i] > 90)
+    {
+      arg[i] = arg[i] * 10
+    } else
+    {
+      arg[i] = arg[i] * 0.1
+    }
+  }
+  return (arg)
+}
+fun(arg=k)
+
+```
+
+####ToDo 15 - Avoiding for loops via vector computation
+```{r}
+w=seq(from=1, to=100, by=1)
+w<-ifelse(w<5 | w>90,w*10,w*0.1)
+w
+```
+
+
+##### Acknowledgements 
+.	R Markdown - Dynamic Documents for R (large resource)
+.	Writing reproducible reports in R with markdown, knitr and pandoc
+.	Markdown
+.	knitr with R Markdown
+.	R markdown cheatsheet
+A (very) short introduction to R
+##### The end
+
+
+
